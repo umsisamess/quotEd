@@ -47,6 +47,7 @@ class Home extends StatelessWidget {
                     ),
                     onPressed: (){
                       print("I think its working");
+                      Navigator.pushReplacementNamed(context, '/loading');
                     },
                      child: Text(
                        'Start',
