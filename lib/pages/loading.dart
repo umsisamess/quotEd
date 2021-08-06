@@ -23,7 +23,7 @@ class _LoadingState extends State<Loading> {
     
     for(int i=0;i<3;i++){
       int randomnum = random.nextInt(len);
-      option[i] = ath[randomnum];
+      option[i] = ath[randomnum]['name'];
     }
     option[3] = qot[0]['author'];
     
