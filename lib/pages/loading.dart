@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:quoted/services/quote_info.dart';
 
 class Loading extends StatefulWidget {
@@ -13,11 +14,24 @@ class _LoadingState extends State<Loading> {
   void takeQuote() async{
     QuoteInfo instance = QuoteInfo();
     await instance.getquote();
-    print(instance.quote);
-    print(instance.author);
-    // Navigator.pushReplacementNamed(context, '/question',arguments : {
-
-    // });
+    List<dynamic> qot = instance.qt;
+    print(instance.qt);
+    int len = instance.at.length;
+    List<dynamic> ath = instance.at;
+    Random random = new Random();
+    List<dynamic> option = List.filled(4, 0,growable: false);
+    
+    for(int i=0;i<3;i++){
+      int randomnum = random.nextInt(len);
+      option[i] = ath[randomnum];
+    }
+    option[3] = qot[0]['author'];
+    
+    Navigator.pushReplacementNamed(context, '/question',arguments : {
+      'quote' : qot[0]['text'],
+      'answer' : qot[0]['author'],
+      'options': option,
+    });
   }
 
   @override

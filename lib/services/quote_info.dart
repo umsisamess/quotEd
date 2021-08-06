@@ -3,8 +3,8 @@ import 'dart:convert';
 
 class QuoteInfo{
 
-  late String quote;
-  late String author;
+  late List<dynamic> qt;
+  late List<dynamic> at;
 
   QuoteInfo();
 
@@ -12,9 +12,11 @@ class QuoteInfo{
     try{
       Response response = await get(Uri.parse('https://goquotes-api.herokuapp.com/api/v1/random?count=1'));
       Map data = jsonDecode(response.body);
-      List<dynamic> qt = data['quotes'];
-      quote = qt[0]['text'];
-      author = qt[0]['author'];
+      qt = data['quotes'];
+      Response resp = await get(Uri.parse('https://goquotes-api.herokuapp.com/api/v1/all/authors'));
+      Map data1 = jsonDecode(resp.body);
+      at = data1['authors'];
+
       
     }
     catch(e){
